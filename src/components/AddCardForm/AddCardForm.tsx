@@ -57,8 +57,9 @@ export const AddCardForm: React.FC<AddCardFormProps> = ({ onAddCard }) => {
       <form onSubmit={handleSubmit(onSubmit)} className="add-card-form">
         <div className="form-grid">
           <div className="form-group">
-            <label>Title *</label>
+            <label htmlFor="title">Title *</label>
             <input
+              id="title"
               type="text"
               className={cn({ "input-error": errors.title })}
               placeholder="Card title"
@@ -70,8 +71,9 @@ export const AddCardForm: React.FC<AddCardFormProps> = ({ onAddCard }) => {
           </div>
 
           <div className="form-group">
-            <label>Image URL *</label>
+            <label htmlFor="image-url">Image URL *</label>
             <input
+              id="image-url"
               type="text"
               className={cn({ "input-error": errors.image })}
               placeholder="https://example.com/image.jpg"
@@ -83,8 +85,9 @@ export const AddCardForm: React.FC<AddCardFormProps> = ({ onAddCard }) => {
           </div>
 
           <div className="form-group">
-            <label>Category *</label>
+            <label htmlFor="category">Category *</label>
             <select
+              id="category"
               className={cn({ "input-error": errors.category })}
               {...register("category", { required: "Select a category" })}
             >
@@ -102,8 +105,9 @@ export const AddCardForm: React.FC<AddCardFormProps> = ({ onAddCard }) => {
           </div>
 
           <div className="form-group">
-            <label>Rarity *</label>
+            <label htmlFor="rarity">Rarity *</label>
             <select
+              id="rarity"
               className={cn({ "input-error": errors.rarity })}
               {...register("rarity", { required: "Select rarity" })}
             >
@@ -122,8 +126,9 @@ export const AddCardForm: React.FC<AddCardFormProps> = ({ onAddCard }) => {
         </div>
 
         <div className="form-group full-width">
-          <label>Description *</label>
+          <label htmlFor="description">Description *</label>
           <textarea
+            id="description"
             className={cn({ "input-error": errors.description })}
             rows={3}
             {...register("description", {
@@ -141,12 +146,24 @@ export const AddCardForm: React.FC<AddCardFormProps> = ({ onAddCard }) => {
             <input type="range" min="0" max="100" {...register("power")} />
           </div>
           <div className="form-group">
-            <label>Defense: {defenseVal}</label>
-            <input type="range" min="0" max="100" {...register("defense")} />
+            <label htmlFor="defense">Defense: {defenseVal}</label>
+            <input
+              id="defense"
+              type="range"
+              min="0"
+              max="100"
+              {...register("defense")}
+            />
           </div>
           <div className="form-group full-width">
-            <label>Speed: {speedVal}</label>
-            <input type="range" min="0" max="100" {...register("speed")} />
+            <label htmlFor="speed">Speed: {speedVal}</label>
+            <input
+              id="speed"
+              type="range"
+              min="0"
+              max="100"
+              {...register("speed")}
+            />
           </div>
         </div>
 

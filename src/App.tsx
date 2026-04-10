@@ -24,7 +24,7 @@ function App() {
   const [isFormOpen, setIsFormOpen] = useState(false);
 
   const { draggedIndex, handleDragStart, handleDragOver, handleDragEnd } =
-    useDragAndDrop(cards, setCards);
+    useDragAndDrop(setCards);
 
   useEffect(() => {
     localStorage.setItem("app-cards", JSON.stringify(cards));

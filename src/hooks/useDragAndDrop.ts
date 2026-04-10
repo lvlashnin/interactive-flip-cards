@@ -2,7 +2,6 @@ import { useState, useCallback } from "react";
 import type { CardData, UseDragAndDropReturn } from "../types";
 
 export const useDragAndDrop = (
-  cards: CardData[],
   setCards: React.Dispatch<React.SetStateAction<CardData[]>>,
 ): UseDragAndDropReturn => {
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);

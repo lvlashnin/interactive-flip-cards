@@ -6,6 +6,7 @@ import { AddCardForm } from "./components/AddCardForm/AddCardForm";
 import { useDragAndDrop } from "./hooks/useDragAndDrop";
 import type { CardData } from "./types";
 import "./App.css";
+import { ThemeToggle } from "./components/ThemeToggle/ThemeToggle";
 
 function App() {
   const [cards, setCards] = useState<CardData[]>(initialCards);
@@ -50,7 +51,7 @@ function App() {
           <div className="favorite-counter">
             ⭐ {favoriteCount} / {cards.length}
           </div>
-          <button className="theme-toggle-placeholder">🌞</button>
+          <ThemeToggle />
         </div>
       </header>
 

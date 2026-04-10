@@ -25,3 +25,14 @@ export interface UseDragAndDropReturn {
   handleDragOver: (e: React.DragEvent<HTMLDivElement>, index: number) => void;
   handleDragEnd: () => void;
 }
+
+export interface AddCardFormValues {
+  title: string;
+  image: string;
+  category: Category | "";
+  rarity: Rarity | "";
+  description: string;
+  power: number;
+  defense: number;
+  speed: number;
+}

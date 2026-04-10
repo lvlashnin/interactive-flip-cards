@@ -1,12 +1,20 @@
 import { useState } from "react";
+import cn from "classnames";
 import { initialCards } from "./data/cards";
-import { useDragAndDrop } from "./hooks/useDragAndDrop";
 import { CardGrid } from "./components/CardGrid/CardGrid";
+import { AddCardForm } from "./components/AddCardForm/AddCardForm";
+import { useDragAndDrop } from "./hooks/useDragAndDrop";
+import type { CardData } from "./types";
+import "./App.css";
 
 function App() {
-  const [cards, setCards] = useState(initialCards);
+  const [cards, setCards] = useState<CardData[]>(initialCards);
+  const [isFormOpen, setIsFormOpen] = useState(false);
+
   const { draggedIndex, handleDragStart, handleDragOver, handleDragEnd } =
     useDragAndDrop(cards, setCards);
+
+  const favoriteCount = cards.filter((card) => card.isFavorite).length;
 
   const handleToggleFavorite = (id: string) => {
     setCards((prevCards) =>
@@ -20,16 +28,49 @@ function App() {
     setCards((prevCards) => prevCards.filter((card) => card.id !== id));
   };
 
+  const handleAddCard = (newCardData: Omit<CardData, "id" | "isFavorite">) => {
+    const newCard: CardData = {
+      ...newCardData,
+      id: crypto.randomUUID(),
+      isFavorite: false,
+    };
+    setCards((prevCards) => [newCard, ...prevCards]);
+    setIsFormOpen(false);
+  };
+
   return (
-    <div className="app-container" style={{ padding: "40px 20px" }}>
-      <header style={{ textAlign: "center", marginBottom: "40px" }}>
-        <h1 style={{ fontSize: "32px", marginBottom: "10px" }}>
-          Card Collection
-        </h1>
-        <p style={{ color: "var(--text-secondary)" }}>
-          💡 Hint: Drag and drop cards to reorder them. Hover to flip.
-        </p>
+    <div className="app-container">
+      <header className="app-header">
+        <div>
+          <h1 className="app-title">Card Collection</h1>
+          <p className="app-subtitle">Hover or tap a card to flip it</p>
+        </div>
+
+        <div className="header-controls">
+          <div className="favorite-counter">
+            ⭐ {favoriteCount} / {cards.length}
+          </div>
+          <button className="theme-toggle-placeholder">🌞</button>
+        </div>
       </header>
+
+      <div className="controls-section">
+        <button
+          onClick={() => setIsFormOpen(!isFormOpen)}
+          className={cn("toggle-form-btn", {
+            "is-open": isFormOpen,
+            "is-closed": !isFormOpen,
+          })}
+        >
+          {isFormOpen ? "❌ Close Form" : "✨ Add Card"}
+        </button>
+      </div>
+
+      {isFormOpen && <AddCardForm onAddCard={handleAddCard} />}
+
+      <div className="hint-box">
+        💡 <strong>Підказка:</strong> Перетягуйте картки, щоб змінити їх порядок
+      </div>
 
       <CardGrid
         cards={cards}

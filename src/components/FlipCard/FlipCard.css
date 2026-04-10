@@ -140,6 +140,13 @@
   margin-bottom: 20px;
 }
 
+.back-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 5px;
+}
+
 .card-title-back {
   font-size: 18px;
   font-weight: 700;

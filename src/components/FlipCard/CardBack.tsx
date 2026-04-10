@@ -17,17 +17,19 @@ export const CardBack: React.FC<CardBackProps> = ({
     <div className="card-face card-back">
       <div className="back-header">
         <h3 className="card-title-back">{card.title}</h3>
-        <button
-          className={cn("favorite-btn-back", {
-            "is-active": card.isFavorite,
-          })}
-          onClick={(e) => onToggleFavorite(e, card.id)}
-        >
-          {card.isFavorite ? "★" : "☆"}
-        </button>
-        <span className={cn("rarity-badge", `rarity-${card.stats.rarity}`)}>
-          {card.stats.rarity}
-        </span>
+        <div className="back-controls">
+          <button
+            className={cn("favorite-btn-back", {
+              "is-active": card.isFavorite,
+            })}
+            onClick={(e) => onToggleFavorite(e, card.id)}
+          >
+            {card.isFavorite ? "★" : "☆"}
+          </button>
+          <span className={cn("rarity-badge", `rarity-${card.stats.rarity}`)}>
+            {card.stats.rarity}
+          </span>
+        </div>
       </div>
 
       <p className="card-description-back">{card.description}</p>

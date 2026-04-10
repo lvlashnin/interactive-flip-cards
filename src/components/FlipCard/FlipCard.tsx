@@ -3,6 +3,7 @@ import cn from "classnames";
 import type { CardData } from "../../types";
 import { CardFront } from "./CardFront";
 import { CardBack } from "./CardBack";
+import { useFlipSound } from "../../hooks/useFlipSound";
 
 import "./FlipCard.css";
 
@@ -18,9 +19,17 @@ export const FlipCard: React.FC<FlipCardProps> = ({
   onDelete,
 }) => {
   const [isFlipped, setIsFlipped] = useState(false);
+  const { playFlip } = useFlipSound();
 
-  const handleMouseEnter = () => setIsFlipped(true);
-  const handleMouseLeave = () => setIsFlipped(false);
+  const handleMouseEnter = () => {
+    setIsFlipped(true);
+    playFlip();
+  };
+
+  const handleMouseLeave = () => {
+    setIsFlipped(false);
+    playFlip();
+  };
 
   const handleToggleFavorite = (e: React.MouseEvent, id: string) => {
     e.stopPropagation();

@@ -1,10 +1,34 @@
-import "./App.css";
+import { useState } from "react";
+import { initialCards } from "./data/cards";
+import { FlipCard } from "./components/FlipCard/FlipCard";
 
 function App() {
+  const [cards, setCards] = useState(initialCards);
+
+  const handleToggleFavorite = () => {};
+
+  const handleDelete = () => {};
+
   return (
-    <>
-      <h1>Hello</h1>
-    </>
+    <div
+      style={{
+        padding: "40px",
+        display: "flex",
+        gap: "20px",
+        flexWrap: "wrap",
+        justifyContent: "center",
+      }}
+    >
+      {cards.map((card) => (
+        <div key={card.id}>
+          <FlipCard
+            card={card}
+            onToggleFavorite={handleToggleFavorite}
+            onDelete={handleDelete}
+          />
+        </div>
+      ))}
+    </div>
   );
 }
 

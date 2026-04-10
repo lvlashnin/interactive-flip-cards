@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import cn from "classnames";
 import { initialCards } from "./data/cards";
 import { CardGrid } from "./components/CardGrid/CardGrid";
@@ -9,11 +9,26 @@ import "./App.css";
 import { ThemeToggle } from "./components/ThemeToggle/ThemeToggle";
 
 function App() {
-  const [cards, setCards] = useState<CardData[]>(initialCards);
+  const [cards, setCards] = useState<CardData[]>(() => {
+    const savedCards = localStorage.getItem("app-cards");
+    if (savedCards) {
+      try {
+        return JSON.parse(savedCards);
+      } catch (e) {
+        console.error("Failed to parse cards from localStorage", e);
+        return initialCards;
+      }
+    }
+    return initialCards;
+  });
   const [isFormOpen, setIsFormOpen] = useState(false);
 
   const { draggedIndex, handleDragStart, handleDragOver, handleDragEnd } =
     useDragAndDrop(cards, setCards);
+
+  useEffect(() => {
+    localStorage.setItem("app-cards", JSON.stringify(cards));
+  }, [cards]);
 
   const favoriteCount = cards.filter((card) => card.isFavorite).length;
 

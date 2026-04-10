@@ -1,0 +1,263 @@
+.flip-card {
+  background-color: transparent;
+  width: 480px;
+  height: 400px;
+  perspective: 1000px;
+  cursor: grab;
+  transition: transform 0.5s ease;
+}
+
+.flip-card:active {
+  cursor: grabbing;
+}
+
+.flip-card:hover {
+  transform: translateY(-10px);
+}
+
+.flip-card.is-favorite-card .card-face {
+  box-shadow: var(--favorite-glow);
+  border: 2px solid var(--accent-color);
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 1s cubic-bezier(0.5, 0, 0.5, 1);
+  transform-style: preserve-3d;
+}
+
+.flip-card-inner.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.card-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 12px;
+  background-color: var(--card-bg);
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-front {
+  z-index: 2;
+}
+
+.card-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 60%;
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.favorite-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;  
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  transition: transform 0.2s;
+  color: #9ca3af;
+  padding-bottom: 6px;
+}
+
+.favorite-btn:hover {
+  transform: scale(1.1);
+}
+
+.favorite-btn.is-active {
+  color: var(--accent-color);
+}
+
+[data-theme="dark"] .favorite-btn {
+  background: var(--card-bg);
+}
+
+.front-content {
+  justify-content: flex-start;
+  padding: 16px 24px;
+}
+
+.category-row {
+  display: flex;
+  margin-bottom: 12px;
+}
+
+.category-badge {
+  background: #f3f4f6;
+  color: #4b5563;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+[data-theme="dark"] .category-badge {
+  background: #374151;
+  color: #e5e7eb;
+}
+
+.centered {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 22px;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.back-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.back-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 5px;
+}
+
+.card-title-back {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.favorite-btn-back {
+  font-size: 24px;
+  color: #111827;
+  transition: transform 0.2s;
+}
+
+.favorite-btn-back.is-active {
+  color: var(--accent-color);
+}
+
+[data-theme="dark"] .favorite-btn-back {
+  color: #f9fafb;
+}
+
+[data-theme="dark"] .favorite-btn-back.is-active {
+  color: var(--accent-color);
+}
+
+.rarity-badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+  color: white;
+}
+
+.rarity-common { background: #9ca3af; }
+.rarity-rare { background: #3b82f6; }
+.rarity-epic { background: #8b5cf6; }
+.rarity-legendary { background: #f59e0b; }
+
+.card-description-back {
+  font-size: 14px;
+  color: var(--text-secondary);
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.stats-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: auto;
+}
+
+.stat-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.stat-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.stat-label {
+  color: var(--text-secondary);
+}
+
+.stat-val.red { color: #ef4444; }
+.stat-val.blue { color: #3b82f6; }
+.stat-val.green { color: #10b981; }
+
+.stat-bar-bg {
+  width: 100%;
+  height: 8px;
+  background: #e5e7eb;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+[data-theme="dark"] .stat-bar-bg {
+  background: #374151;
+}
+
+.stat-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.5s ease-out;
+}
+
+.bg-red { background: #ef4444; }
+.bg-blue { background: #3b82f6; }
+.bg-green { background: #10b981; }
+
+.delete-btn-full {
+  width: 100%;
+  padding: 12px;
+  background: #ef4444;
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.2s;
+  margin-top: 20px;
+}
+
+.delete-btn-full:hover {
+  background: #dc2626;
+}

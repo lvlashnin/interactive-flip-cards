@@ -1,0 +1,21 @@
+.theme-toggle-btn {
+  background: var(--border-color);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.theme-toggle-btn:hover {
+  transform: scale(1.1);
+  background: var(--card-bg);
+}
+
+[data-theme="dark"] .theme-toggle-btn {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}

@@ -3,6 +3,7 @@ import cn from "classnames";
 import type { CardData } from "../../types";
 import { CardFront } from "./CardFront";
 import { CardBack } from "./CardBack";
+
 import "./FlipCard.css";
 
 interface FlipCardProps {
